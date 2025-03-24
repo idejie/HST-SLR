@@ -117,7 +117,7 @@ We wrongly delete the original checkpoint and retrain the model with similar acc
 
 ## 5. Training
 
-To train the SLR model, choose the dataset from `phoenix2014/phoenix2014-T/CSL-Daily` in `./configs/baseline.yaml`(line 3) and set the target in `tree_network.py`(line 14) `phoenix2014`, `phoenix2014T`, `CSLDaily`. Then run the command below:
+To train the SLR model, choose the dataset from `phoenix2014/phoenix2014-T/CSL-Daily` in `./configs/baseline.yaml`(line 3) and set the target in `tree_network.py`(line 14) `phoenix2014`, `phoenix2014T`, `CSLDaily`. Then run the command below：   
 `python main.py --config ./configs/baseline.yaml --device your_device --work-dir ./work_dir/your_expname/`
 
 For CSL-Daily dataset, You may choose to reduce the lr by half from 0.0001 to 0.00005 in `./configs/baseline.yaml`(line 24)
