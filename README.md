@@ -1,6 +1,11 @@
 # HST-SLR: Hierarchical Sub-action Tree with Large Language Models for Continuous Sign Language Recognition
 
+This is the official implementation of the paper by Dejie Yang, Zhu Xu, Xinjie Gao and Yang Liu
 
+![](./figs/sign-frame.png)
+
+> Continuous sign language recognition (CSLR) aims to transcribe untrimmed videos into glosses, which are typically textual words. Recent studies indicate that the lack of large datasets and precise annotations has become a bottleneck for CSLR due to insufficient training data. To address this, some works have developed cross-modal solutions to align visual and textual modalities. However, they typically extract textual features from glosses without fully utilizing their knowledge. In this paper, we propose the Hierarchical Sub-action Tree (HST), termed HST-CSLR, to efficiently combine gloss knowledge with visual representation learning. By incorporating gloss-specific knowledge from large language models, our approach leverages textual information more effectively. Specifically, we construct an HST for textual information representation, aligning visual and textual modalities step-by-step and benefiting from the tree structure to reduce computational complexity. Additionally, we impose a contrastive alignment enhancement to bridge the gap between the two modalities. Experiments on four datasets (PHOENIX-2014, PHOENIX-2014T, CSL-Daily, and Sign Language Gesture) demonstrate the effectiveness of our HST-CSLR. 
+>
 ## 1. Prerequisites
 1. Create a `Conda` environment.
 ```bash
@@ -133,3 +138,13 @@ We also conduct experiments on the Sign Language Gesture dataset. First, downloa
 python train.py
 ```
 SLG is a quite small and simple image dataset, and you can get an accuracy of nearly 100% in less than 20 minutes. Thus, we do not provide our checkpoints. You can modify the gpu device in `train.py`(line 12).
+
+## 7. Citation
+```
+@inproceedings{gan2024signgraph,
+  title={HST-SLR: Hierarchical Sub-action Tree with Large Language Models for Continuous Sign Language Recognition},
+  author={Dejie Yang, Zhu Xu, Xinjie Gao and Yang Liu},
+  booktitle={IEEE International Conference on Multimedia & Expo(ICME)},
+  year={2025}
+}
+```
