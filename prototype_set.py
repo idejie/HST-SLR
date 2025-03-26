@@ -1,8 +1,13 @@
 import pandas as pd
 import torch
 from transformers import CLIPTextModel, CLIPTokenizer
+import argparse
 
-target = 'phoenix2014' # phoenix2014, phoenix2014T, CSLDaily
+parser = argparse.ArgumentParser(description='train for SLG')
+parser.add_argument('--dataset', default="phoenix2014", help='the target dataset')
+args = parser.parse_args()
+
+target = args.dataset # phoenix2014, phoenix2014T, CSLDaily
 
 df = pd.read_csv('./sentence_cluster/description_{}.csv'.format(target))
 

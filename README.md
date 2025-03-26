@@ -34,7 +34,7 @@ You can choose any one of following datasets to verify the effectiveness of HST-
 2. After finishing dataset download, extract it. It is suggested to make a soft link toward downloaded dataset.   
 `ln -s PATH_TO_DATASET/phoenix2014-release ./dataset/phoenix2014`
 
-3. The original image sequence is 210x260, we resize it to 256x256 for augmentation. Run the following command to generate gloss dict and resize image sequence.     
+3. Run the following command to generate gloss dict and resize image sequence.     
 ```bash
 cd ./preprocess
 python dataset_preprocess.py --process-image --multiprocessing
@@ -46,7 +46,7 @@ python dataset_preprocess.py --process-image --multiprocessing
 2. After finishing dataset download, extract it. It is suggested to make a soft link toward downloaded dataset.   
 `ln -s PATH_TO_DATASET/PHOENIX-2014-T-release-v3/PHOENIX-2014-T ./dataset/phoenix2014-T`
 
-3. The original image sequence is 210x260, we resize it to 256x256 for augmentation. Run the following command to generate gloss dict and resize image sequence.     
+3. Run the following command to generate gloss dict and resize image sequence.     
 ```bash
 cd ./preprocess
 python T_process.py
@@ -60,7 +60,7 @@ python dataset_preprocess-T.py --process-image --multiprocessing
 2. After finishing dataset download, extract it. It is suggested to make a soft link toward downloaded dataset.   
 `ln -s PATH_TO_DATASET ./dataset/CSL-Daily`
 
-3. The original image sequence is 1280x720, we resize it to 256x256 for augmentation. Run the following command to generate gloss dict and resize image sequence.     
+3. Run the following command to generate gloss dict and resize image sequence.     
 ```bash
 cd ./preprocess
 python dataset_preprocess-CSL-Daily.py --process-image --multiprocessing
@@ -69,25 +69,25 @@ python dataset_preprocess-CSL-Daily.py --process-image --multiprocessing
 ## 3. Build Hierarchical Sub-action Tree
 
 ### 3.1 Generate Sub-action
-Run the folling command to generate descriptions for each word. You should modify the api_key in `description_generate.py`(line 5) and set the target dataset in (line 3) `phoenix2014`, `phoenix2014T`, `CSLDaily`. If you want to generate the descriptions yourself, please make sure to remove the file `description_{target}.txt` in the directory first.
+Choose the dataset from `phoenix2014/phoenix2014T/CSLDaily` and run the folling command to generate descriptions for each word. You should modify the api_key in `description_generate.py`(line 10). If you want to generate the descriptions yourself, please make sure to remove the file `description_{target_dataset}.txt` in the directory first.
 ```bash
 cd ./hst_build/generation
-python description_generate.py
+python description_generate.py --dataset target_dataset
 ```
 
 ### 3.2 Build HST
-Run the following command to build HST with the descriptions obtained before. You can set the target dataset in `cluster.py`(line 5) `phoenix2014`, `phoenix2014T`, `CSLDaily`. We have provided the generated results.
+Choose the dataset from `phoenix2014/phoenix2014T/CSLDaily` and run the following command to build HST with the descriptions obtained before.
 ```bash
 cd ./hst_build
-python cluster.py
+python cluster.py --dataset target_dataset
 ```
 
 ### 3.3 Prototype, Update Matrix and Loss Matrix
-Run the following command to set the prototype for each tree node, generate the update matrix for updating and find the tree node that contains a certain word. You can set the target dataset in `prototype_set.py`(line 5), in `update_matrix.py`(line 4) and in `search_matrix.py`(line 4) `phoenix2014`, `phoenix2014T`, `CSLDaily`.
+Choose the dataset from `phoenix2014/phoenix2014T/CSLDaily` and run the following command to set the prototype for each tree node, generate the update matrix for updating and find the tree node that contains a certain word.
 ```bash
-python prototype_set.py
-python update_matrix.py
-python search_matrix.py
+python prototype_set.py --dataset target_dataset
+python update_matrix.py --dataset target_dataset
+python search_matrix.py --dataset target_dataset
 ```
 
 We have provided all the generated results mentioned earlier. Please download the zip file through the link [Google Drive](https://drive.google.com/file/d/1z2n-bh2pgR5iCX9tDJpgixMgHGtKDts1/view?usp=drive_link). Then put the file in `./HDT_prototype` and unzip it.
@@ -98,17 +98,23 @@ We have provided all the generated results mentioned earlier. Please download th
 
 | Dev WER  | Test WER  | Pretrained model                                             |
 | ---------- | ----------- | --- |
-| 17.6%      | 18.5%       | [[Google Drive]](https://drive.google.com/file/d/14ZtqXj7GN9qtc38UqyJFIZMPZeZSRXNt/view?usp=drive_link)|
+| 17.9%      | 18.2%       | [[Google Drive]](https://drive.google.com/file/d/14ZtqXj7GN9qtc38UqyJFIZMPZeZSRXNt/view?usp=drive_link)|
 
-We wrongly delete the original checkpoint and retrain the model with similar accuracy (Dev: 17.9%, Test: 18.2%)
+​To evaluate the pretrained model on PHOENIX2014, run the command below：
+```bash
+python main.py --config ./configs/baseline_14.yaml --device your_device --work-dir ./work_dir/your_expname/ --load-weights path_to_weight.pt --phase test
+```
 
 ### PHOENIX2014-T dataset
 
 | Dev WER  | Test WER  | Pretrained model                                             |
 | ---------- | ----------- | --- |
-| 17.4%      | 19.0%       | [[Google Drive]](https://drive.google.com/file/d/1oXnrgd7nGKGLvipW3paU6_gYi7l5BSt1/view?usp=drive_link)|
+| 17.4%      | 19.1%       | [[Google Drive]](https://drive.google.com/file/d/1oXnrgd7nGKGLvipW3paU6_gYi7l5BSt1/view?usp=drive_link)|
 
-We wrongly delete the original checkpoint and retrain the model with similar accuracy (Dev: 17.4%, Test: 19.1%)
+​To evaluate the pretrained model on PHOENIX2014-T, run the command below：
+```bash
+python main.py --config ./configs/baseline_14T.yaml --device your_device --work-dir ./work_dir/your_expname/ --load-weights path_to_weight.pt --phase test
+```
 
 ### CSL-Daily dataset
 
@@ -116,28 +122,34 @@ We wrongly delete the original checkpoint and retrain the model with similar acc
 | ---------- | ----------- | --- |
 | 27.5%      | 27.4%       | [[Google Drive]](https://drive.google.com/file/d/112_GqITfK4I0jtWQloDN7RTNRcgvScOi/view?usp=drive_link)|
 
-
-​To evaluate the pretrained model, choose the dataset from `phoenix2014/phoenix2014-T/CSL-Daily` in `./configs/baseline.yaml`(line 3) and set the target in `tree_network.py`(line 14) `phoenix2014`, `phoenix2014T`, `CSLDaily`. Then run the command below：   
+​To evaluate the pretrained model on CSL-Daily, run the command below：   
 ```bash
-python main.py --config ./configs/baseline.yaml --device your_device --work-dir ./work_dir/your_expname/ --load-weights path_to_weight.pt --phase test
+python main.py --config ./configs/baseline_CD.yaml --device your_device --work-dir ./work_dir/your_expname/ --load-weights path_to_weight.pt --phase test
 ```
 
 ## 5. Training
 
-To train the SLR model, choose the dataset from `phoenix2014/phoenix2014-T/CSL-Daily` in `./configs/baseline.yaml`(line 3) and set the target in `tree_network.py`(line 14) `phoenix2014`, `phoenix2014T`, `CSLDaily`. Then run the command below:
+To train the SLR model on PHOENIX2014, run the command below:
 ```bash
-python main.py --config ./configs/baseline.yaml --device your_device --work-dir ./work_dir/your_expname/
+python main.py --config ./configs/baseline_14.yaml --device your_device --work-dir ./work_dir/your_expname/
 ```
 
-For CSL-Daily dataset, You may choose to reduce the lr by half from 0.0001 to 0.00005 in `./configs/baseline.yaml`(line 24)
+To train the SLR model on PHOENIX2014-T, run the command below:
+```bash
+python main.py --config ./configs/baseline_14T.yaml --device your_device --work-dir ./work_dir/your_expname/
+```
+
+To train the SLR model on CSL-Daily, run the command below:
+```bash
+python main.py --config ./configs/baseline_CD.yaml --device your_device --work-dir ./work_dir/your_expname/
+```
 
 ## 6. Sign Language Gesture
 
 We also conduct experiments on the Sign Language Gesture dataset. First, download the dataset through the link [Google Drive](https://drive.google.com/file/d/12a0mQ_kH7Pk4B2ntb0qg_qGN9tfbwnnu/view?usp=drive_link) and the pretrained weights through the link [Google Drive](https://drive.google.com/file/d/1u8IdnniordVVdmDYkIV5qBMmjuViiLGx/view?usp=drive_link). Then put the files in `./SLG` and unzip them. Then run the command below:
 ```bash
-python train.py
+python train.py --device your_device
 ```
-SLG is a quite small and simple image dataset, and you can get an accuracy of nearly 100% in less than 20 minutes. Thus, we do not provide our checkpoints. You can modify the gpu device in `train.py`(line 12).
 
 ## 7. Citation
 ```

@@ -1,6 +1,6 @@
 feeder: dataset.dataloader_video.BaseFeeder
 phase: train
-dataset: phoenix2014 #CSL-Daily, phoenix2014-T, phoenix2014
+dataset: CSL-Daily
 num_epoch: 80
 work_dir: ./work_dir/temp/
 batch_size: 2
@@ -21,7 +21,7 @@ loss_weights:
 
 optimizer_args:
   optimizer: Adam
-  base_lr: 0.0001
+  base_lr: 0.00005
   step: [ 40, 60]
   learning_ratio: 1
   weight_decay: 0.0001

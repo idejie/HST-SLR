@@ -36,9 +36,6 @@ class Processor():
         else:
             os.makedirs(self.arg.work_dir)
         shutil.copy2(__file__, self.arg.work_dir)
-        shutil.copy2('./configs/baseline.yaml', self.arg.work_dir)
-        shutil.copy2('./modules/tconv.py', self.arg.work_dir)
-        shutil.copy2('./modules/resnet.py', self.arg.work_dir)
         self.recoder = utils.Recorder(self.arg.work_dir, self.arg.print_log, self.arg.log_interval)
         self.save_arg()
         if self.arg.random_fix:
@@ -164,6 +161,7 @@ class Processor():
             **self.arg.model_args,
             gloss_dict=self.gloss_dict,
             loss_weights=self.arg.loss_weights,
+            target=self.arg.dataset,
         )
         shutil.copy2(inspect.getfile(model_class), self.arg.work_dir)
         optimizer = utils.Optimizer(model, self.arg.optimizer_args)

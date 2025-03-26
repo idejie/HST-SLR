@@ -13,7 +13,7 @@ def get_parser():
         help='the work folder for storing results')
     parser.add_argument(
         '--config',
-        default='./configs/baseline.yaml',
+        default='./configs/baseline_14.yaml',
         help='path to the configuration file')
     parser.add_argument(
         '--random_fix',

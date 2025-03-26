@@ -1,8 +1,13 @@
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.cluster import KMeans
+import argparse
 
-target = 'phoenix2014' # phoenix2014, phoenix2014T, CSLDaily
+parser = argparse.ArgumentParser(description='train for SLG')
+parser.add_argument('--dataset', default="phoenix2014", help='the target dataset')
+args = parser.parse_args()
+
+target = args.dataset # phoenix2014, phoenix2014T, CSLDaily
 
 df = pd.DataFrame(columns=['sentence', 'word_index', 'sentence_index', 'l1_label', 'l2_label'])
 

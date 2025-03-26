@@ -11,8 +11,6 @@ from modules.criterions import SeqKD
 from modules import BiLSTMLayer, TemporalConv
 import modules.resnet as resnet
 
-target = 'phoenix2014' # phoenix2014, phoenix2014T, CSLDaily
-
 class Identity(nn.Module):
     def __init__(self):
         super(Identity, self).__init__()
@@ -35,7 +33,7 @@ class NormLinear(nn.Module):
 class SLRModel(nn.Module):
     def __init__(
             self, num_classes, c2d_type, conv_type, use_bn=False,
-            hidden_size=1024, gloss_dict=None, loss_weights=None,
+            hidden_size=1024, gloss_dict=None, loss_weights=None, target=None,
             weight_norm=True, share_classifier=True
     ):
         super(SLRModel, self).__init__()
@@ -68,10 +66,16 @@ class SLRModel(nn.Module):
 
         self.vf = nn.Linear(hidden_size, 768)
         self.tf = nn.Linear(77*768, 768)
-        self.l1 = torch.load("./HDT_prototype/l1_{}.pt".format(target)).cuda()
-        self.l2 = torch.load("./HDT_prototype/l2_{}.pt".format(target)).cuda()
-        self.up = torch.load("./HDT_prototype/up_matrix_{}.pt".format(target)).cuda()
-        self.ls = torch.load("./HDT_prototype/ls_matrix_{}.pt".format(target)).cuda()
+        value_mapping = {
+            "phoenix2014": "phoenix2014",
+            "phoenix2014-T": "phoenix2014T",
+            "CSL-Daily": "CSLDaily"
+        }
+        self.target = value_mapping.get(target, "phoenix2014")
+        self.l1 = torch.load("./HDT_prototype/l1_{}.pt".format(self.target)).cuda()
+        self.l2 = torch.load("./HDT_prototype/l2_{}.pt".format(self.target)).cuda()
+        self.up = torch.load("./HDT_prototype/up_matrix_{}.pt".format(self.target)).cuda()
+        self.ls = torch.load("./HDT_prototype/ls_matrix_{}.pt".format(self.target)).cuda()
 
     def backward_hook(self, module, grad_input, grad_output):
         for g in grad_input:

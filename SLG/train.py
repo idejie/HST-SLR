@@ -7,9 +7,17 @@ from torch.utils.data import DataLoader
 import torch.optim as optim
 from tqdm import tqdm
 import os
+import argparse
+
+
+parser = argparse.ArgumentParser(description='train for SLG')
+parser.add_argument('--device', type=int, default=0, help='gpu device number')
+args = parser.parse_args()
+
+device = torch.device(f"cuda:{args.device}" if torch.cuda.is_available() else "cpu")
 
 bert_path = "./pretrained/bert-base-uncased"
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
 
 class VisionEncoder(nn.Module):
     def __init__(self, embed_dim):
