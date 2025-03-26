@@ -113,15 +113,23 @@ We wrongly delete the original checkpoint and retrain the model with similar acc
 
 
 ​To evaluate the pretrained model, choose the dataset from `phoenix2014/phoenix2014-T/CSL-Daily` in `./configs/baseline.yaml`(line 3) and set the target in `tree_network.py`(line 14) `phoenix2014`, `phoenix2014T`, `CSLDaily`. Then run the command below：   
-`python main.py --config ./configs/baseline.yaml --device your_device --work-dir ./work_dir/your_expname/ --load-weights path_to_weight.pt --phase test`
+```bash
+python main.py --config ./configs/baseline.yaml --device your_device --work-dir ./work_dir/your_expname/ --load-weights path_to_weight.pt --phase test
+```
 
 ## 5. Training
 
-To train the SLR model, choose the dataset from `phoenix2014/phoenix2014-T/CSL-Daily` in `./configs/baseline.yaml`(line 3) and set the target in `tree_network.py`(line 14) `phoenix2014`, `phoenix2014T`, `CSLDaily`. Then run the command below：   
-`python main.py --config ./configs/baseline.yaml --device your_device --work-dir ./work_dir/your_expname/`
+To train the SLR model, choose the dataset from `phoenix2014/phoenix2014-T/CSL-Daily` in `./configs/baseline.yaml`(line 3) and set the target in `tree_network.py`(line 14) `phoenix2014`, `phoenix2014T`, `CSLDaily`. Then run the command below:
+```bash
+python main.py --config ./configs/baseline.yaml --device your_device --work-dir ./work_dir/your_expname/
+```
 
 For CSL-Daily dataset, You may choose to reduce the lr by half from 0.0001 to 0.00005 in `./configs/baseline.yaml`(line 24)
 
-## 6. Citation
+## 6. Sign Language Gesture
 
-If you find this repo useful in your research works, please consider citing:
+We also conduct experiments on the Sign Language Gesture dataset. First, download the dataset through the link [Google Drive](https://drive.google.com/file/d/12a0mQ_kH7Pk4B2ntb0qg_qGN9tfbwnnu/view?usp=drive_link) and the pretrained weights through the link [Google Drive](https://drive.google.com/file/d/1u8IdnniordVVdmDYkIV5qBMmjuViiLGx/view?usp=drive_link). Then put the files in `./SLG` and unzip them. Then run the command below:
+```bash
+python train.py
+```
+SLG is a quite small and simple image dataset, and you can get an accuracy of nearly 100% in less than 20 minutes. Thus, we do not provide our checkpoints. You can modify the gpu device in `train.py`(line 12).
