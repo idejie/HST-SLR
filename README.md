@@ -1,5 +1,5 @@
-# HST-SLR: Hierarchical Sub-action Tree for Continuous Sign Language Recognition
-This repo holds codes of the paper: Hierarchical Sub-action Tree for Continuous Sign Language Recognition
+# HST-SLR: Hierarchical Sub-action Tree with Large Language Models for Continuous Sign Language Recognition
+
 
 ## 1. Prerequisites
 1. Create a `Conda` environment.
