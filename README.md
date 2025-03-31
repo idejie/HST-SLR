@@ -98,7 +98,7 @@ We have provided all the generated results mentioned earlier. Please download th
 
 | Dev WER  | Test WER  | Pretrained model                                             |
 | ---------- | ----------- | --- |
-| 17.9%      | 18.2%       | [[Google Drive]](https://drive.google.com/file/d/14ZtqXj7GN9qtc38UqyJFIZMPZeZSRXNt/view?usp=drive_link)|
+| 17.9%      | 18.2%       | [[Google Drive]](https://drive.google.com/file/d/1Jmg5LlxSRZC-3XCYLZY6TvzPYU_Z6t1Q/view?usp=drive_link)|
 
 ​To evaluate the pretrained model on PHOENIX2014, run the command below：
 ```bash
@@ -109,7 +109,7 @@ python main.py --config ./configs/baseline_14.yaml --device your_device --work-d
 
 | Dev WER  | Test WER  | Pretrained model                                             |
 | ---------- | ----------- | --- |
-| 17.4%      | 19.1%       | [[Google Drive]](https://drive.google.com/file/d/1oXnrgd7nGKGLvipW3paU6_gYi7l5BSt1/view?usp=drive_link)|
+| 17.4%      | 19.3%       | [[Google Drive]](https://drive.google.com/file/d/15D-ontHXLNVSUbUzoV01rRMCQGsZjPJ_/view?usp=sharing)|
 
 ​To evaluate the pretrained model on PHOENIX2014-T, run the command below：
 ```bash
@@ -120,7 +120,7 @@ python main.py --config ./configs/baseline_14T.yaml --device your_device --work-
 
 | Dev WER  | Test WER  | Pretrained model                                            |
 | ---------- | ----------- | --- |
-| 27.5%      | 27.4%       | [[Google Drive]](https://drive.google.com/file/d/112_GqITfK4I0jtWQloDN7RTNRcgvScOi/view?usp=drive_link)|
+| 27.5%      | 27.4%       | [[Google Drive]](https://drive.google.com/file/d/1q_IgHgMEOdrfLhKwqna3LzU6nIDd2YbZ/view?usp=drive_link)|
 
 ​To evaluate the pretrained model on CSL-Daily, run the command below：   
 ```bash
