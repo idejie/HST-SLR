@@ -1,4 +1,4 @@
-# HST-SLR: Hierarchical Sub-action Tree with Large Language Models for Continuous Sign Language Recognition
+# HST-SLR: Hierarchical Sub-action Tree  for Continuous Sign Language Recognition
 
 This is the official implementation of the paper by Dejie Yang, Zhu Xu, Xinjie Gao and Yang Liu
 
@@ -154,7 +154,7 @@ python train.py --device your_device
 ## 7. Citation
 ```
 @inproceedings{gan2024signgraph,
-  title={HST-SLR: Hierarchical Sub-action Tree with Large Language Models for Continuous Sign Language Recognition},
+  title={HST-SLR: Hierarchical Sub-action Tree for Continuous Sign Language Recognition},
   author={Dejie Yang, Zhu Xu, Xinjie Gao and Yang Liu},
   booktitle={IEEE International Conference on Multimedia & Expo(ICME)},
   year={2025}
