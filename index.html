@@ -133,9 +133,9 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body" style="text-align: center;">
-      <img src="static/images/teaser.png" alt="MY ALT TEXT"/>
+      <img src="static/images/teaser.png" alt="MY ALT TEXT" width="80%"/>
     
-      <h2 class="content" style="text-align: center;">
+      <h2 class="content has-text-justified" >
         <b>Sign language videos display a hierarchy of semantic information, from high-level events (glosses) to fine-grained subactions. However, existing datasets lack detailed annotations for these subactions, posing challenges forimproving the layered understanding of sign language content. To address this,we leverage large language models (LLMs) to generate precise and meaningful descriptions of subactions, thereby enhancing the hierarchical understanding of sign language videos.</b></h2>
     </div>
   </div>
@@ -167,7 +167,7 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3">Framework</h2>
     <div class="hero-body" style="text-align: center;">
-      <img src="static/images/frame.png" alt="MY ALT TEXT"/>
+      <img src="static/images/frame.png" alt="MY ALT TEXT" width="80%"/>
     
       <h2 class="content has-text-justified" style="text-align: center;">
         Our proposed HST-CSLR framework. To explore the fine-grained sub-action information, we use an LLM to generate detailed descriptions for each gloss and construct a Hierarchical Sub-action Tree (HST). An optimal path search algorithm is applied to integrate semantic and temporal information in sub-action sequence, and a hierarchical cross-modal alignment enhances visual-textual consistency using activated tree nodes.</h2>
@@ -178,18 +178,26 @@
 
 
 
-<section class="hero teaser">
+<section class="hero teaser ">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Results</h2>
+    <h2 class="title is-3">Comparisons with SOTA</h2>
+    <h2 class="content has-text-justified" style="text-align: center;">
+      <ul>
+        <li>Experiments on the four datasets</li>
+        <li>Our generalization	across German, Chinese, and English</li>
+        <li>Performing effectively on both videos and images</li>
+      </ul>
+      
+    </h2>
     <div class="hero-body" style="text-align: center;">
-      <img src="static/images/table1.png" alt="MY ALT TEXT" width="100%"/>
+      <img src="static/images/table1.png" alt="MY ALT TEXT" width="60%"/>
     </div>
     <div class="hero-body" style="text-align: center;">
-      <img src="static/images/table2.png" alt="MY ALT TEXT" width="100%"/>
+      <img src="static/images/table2.png" alt="MY ALT TEXT" width="60%"/>
     </div>
-    <div class="hero-body" style="text-align: center;">
+    <!-- <div class="hero-body" style="text-align: center;">
       <img src="static/images/table3.png" alt="MY ALT TEXT" width="100%"/>
-    </div>
+    </div
     <div class="hero-body" style="text-align: center;">
       <img src="static/images/table4.png" alt="MY ALT TEXT" width="100%"/>
     </div>
@@ -207,9 +215,15 @@
     </div>
     <div class="hero-body" style="text-align: center;">
       <img src="static/images/prompt.png" alt="MY ALT TEXT" width="100%"/>
-    </div>
+    </div> -->
+    <h2 class="title is-3">Visualization</h2>
+    <h2 class="content has-text-justified" style="text-align: center;">
+      <ul>
+        <li>The consistency between our prediction and ground truth shows the effectiveness   of our method.</li>
+      </ul>
+    </h2>
     <div class="hero-body" style="text-align: center;">
-      <img src="static/images/Visual.png" alt="MY ALT TEXT" width="100%"/>
+      <img src="static/images/Visual.png" alt="MY ALT TEXT" width="80%"/>
     </div>
     <!-- <div class="hero-body" style="text-align: center;">
       <h2 class="content has-text-justified">
